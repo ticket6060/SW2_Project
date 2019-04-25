@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Events ;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +21,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('index');
-    }
+      public function index(){
+        $tasks = Events::orderby('id','asc')->get();
+        return view('index')->with('storedtasks',$tasks);
+        }
 }
