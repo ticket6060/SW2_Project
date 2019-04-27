@@ -21,7 +21,7 @@
       <br>
     </div> 
 
-    <!-- error message using laravel errors -->
+    <!-- success message using laravel success -->
     {{-- display success message --}}
     @if (Session::has('success'))
       <div class="alert alert-success">
@@ -29,6 +29,7 @@
       </div>
     @endif
 
+    <!-- error message using laravel errors -->
     {{-- display error message --}}
     @if (count($errors) > 0)
       <div class="alert alert-danger">
