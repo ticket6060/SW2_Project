@@ -12,12 +12,6 @@ use Illuminate\Support\Facades\Input;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('index');
-});
-
-
 Route::get('about', function () {
     return view('about');
 });

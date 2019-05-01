@@ -66,14 +66,19 @@
         <div class="col-md-2">
           <input type="text" name='newUserAddress' class='form-control'placeholder="Address">
         </div>
-
         <div class="col-md-2">
-          <input type="submit" class='btn btn-primary btn-block' value='Add User'>
+          <input type="text" name='newUserRole' class='form-control'placeholder="User Role">
+        </div>
+        <br/>
+        <br/>
+        <div class="col-md-3">
+          <input type="submit" class='btn btn-primary btn-block'  value='Add User'>
         </div>
 
       </form>
     </div>
-
+<br/>
+<br/>
     {{-- display stored users --}}
     @if (count($storedUsers) > 0)
       <table class="table">
@@ -81,9 +86,10 @@
           <th>User #</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Password</th>
+         <!--<th>Password</th>-->
           <th>Phone</th>
           <th>Address</th>
+          <th>Role</th>
           <th>Edit</th>
           <th>Delete</th>
         </thead>
@@ -94,9 +100,10 @@
               <th>{{ $storedUser->id }}</th>
               <td>{{ $storedUser->name }}</td>
               <td>{{ $storedUser->email }}</td>
-              <td>{{ $storedUser->password }}</td>
+             <!-- <td>{{ $storedUser->password }}</td> -->
               <td>{{ $storedUser->phone }}</td>
               <td>{{ $storedUser->address }}</td>
+              <td>{{ $storedUser->role }}</td>
               <td>
                 <a href="{{ route('admin.edit', ['users'=>$storedUser->id]) }}" class='btn btn-primary'> Edit </a>
               </td>

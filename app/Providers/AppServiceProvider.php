@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Providers;
-
+use App\Repositories\Repository;
+use App\Repositories\RepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +14,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    $this->app->singleton(RepositoryInterface::class , Repository::class);
+
     }
 
     /**

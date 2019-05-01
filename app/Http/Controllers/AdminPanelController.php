@@ -1,13 +1,18 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\User;
+use App\Repositories\Repository;
+use Illuminate\Http\Request;
 use Session;
-
 class AdminPanelController extends Controller
 {
+    // space that we can use the repository from
+   protected $model;
+   public function __construct(User $user)
+   {
+       // set the model
+       $this->model = new Repository($user);
+   }
     /**
      * Display a listing of the resource.
      *
@@ -40,9 +45,10 @@ class AdminPanelController extends Controller
         $this->validate($request, [
                 'newUserName' => 'required|min:5|max:20',
                 'newUserEmail' => 'required|email',
-                'newUserPassword' => 'required|min:5|max:20',
+                'newUserPassword' => 'required|min:5',
                 'newUserPhone' => 'required|min:11|max:11',
                 'newUserAddress' => 'required|min:5|max:100',
+                'newUserRole' => 'required|max:100',
             ]);
 
         $user = new User;
@@ -51,6 +57,7 @@ class AdminPanelController extends Controller
         $user->password = $request->newUserPassword;
         $user->phone = $request->newUserPhone;
         $user->address = $request->newUserAddress;
+        $user->admin = $request->newUserRole;
         $user->save(); 
 
         return redirect()->route('admin.index');
@@ -93,9 +100,10 @@ class AdminPanelController extends Controller
         $this->validate($request, [
                 'updatedUserName' => 'required|min:5|max:20',
                 'updatedEmail' => 'required|email',
-                'updatedPassword' => 'required|min:5|max:20',
-                'updatedPhone' => 'required|min:11|max:11',
+                'updatedPassword' => 'required|min:5',
+                'updatedPhone' => 'required|min:11',
                 'updatedAddress' => 'required|min:5|max:100',
+                'updateUserRole' =>'required|max:100',
             ]);
 
         $user = User::find($id);
@@ -104,7 +112,8 @@ class AdminPanelController extends Controller
         $user->email = $request->updatedEmail;
         $user->password = $request->updatedPassword;
         $user->phone = $request->updatedPhone;
-        $user->address = $request->updatedAddress; 
+        $user->address = $request->updatedAddress;
+        $user->admin = $request->updateUserRole;
 
         $user->save();
 
@@ -128,4 +137,4 @@ class AdminPanelController extends Controller
 
         return redirect()->route('admin.index');
     }
-}
+} 

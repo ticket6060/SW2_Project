@@ -66,6 +66,10 @@
           <h4> <b> Address: </b> </h4>
           <input type="text" name='updatedAddress' class='form-control input-lg' value='{{ $usernameUnderEdit->address }}'>
         </div>
+       <div class="form-group">
+          <h4> <b> User Role: </b> </h4>
+          <input type="text" name='updateUserRole' class='form-control input-lg' value='{{ $usernameUnderEdit->role }}'>
+        </div>
 
         <div class="form-group">
           <input type="submit" value='Save Changes' class='btn btn-success btn-lg'>
